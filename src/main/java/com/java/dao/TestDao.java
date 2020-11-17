@@ -8,5 +8,4 @@ package com.java.dao;
  * @Date 2020/11/17
  */
 public interface TestDao {
-
 }
