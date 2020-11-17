@@ -36,8 +36,7 @@
     </bean>
 
 
-
-<!--静态资源过滤-->
+    <!--静态资源过滤-->
     <mvc:default-servlet-handler/>
 
 </beans>
