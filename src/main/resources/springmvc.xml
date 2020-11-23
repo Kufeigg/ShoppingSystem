@@ -37,5 +37,5 @@
 
     <!--静态资源过滤-->
     <mvc:default-servlet-handler/>
-
+    <mvc:resources mapping="/statics/**" location="/statics/"/>
 </beans>
