@@ -38,4 +38,13 @@
     <!--静态资源过滤-->
     <mvc:default-servlet-handler/>
     <mvc:resources mapping="/statics/**" location="/statics/"/>
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <mvc:exclude-mapping path="/admin/local/alogin"/>
+            <mvc:exclude-mapping path="/admin/login"/>
+            <mvc:exclude-mapping path="/admin/goods/**"/>
+            <bean class="com.java.filters.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
