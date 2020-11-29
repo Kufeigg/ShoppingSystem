@@ -71,10 +71,10 @@
                 {field: 'id', width: 80, title: 'ID', sort: true},
                 {field: 'gname', width: 150, title: '商品名称'},
                 {field: 'goprice', width: 150, title: '商品原价', sort: true},
-                {field: 'grprice', width: 150, title: '商品现价'},
+                {field: 'grprice', width: 150, title: '商品现价', sort: true},
                 {field: 'gstore', width: 80, title: '库存', sort: true},
-                {field: 'gpic', width: 80, title: '图片', sort: true},
-                {field: 'goodstypeid', width: 135, title: 'typeID', sort: true},
+                {field: 'gpic', width: 80, title: '图片'},
+                {field: 'goodstypeid', width: 135, title: 'typeID'},
                 {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
