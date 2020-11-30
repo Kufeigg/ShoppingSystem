@@ -9,7 +9,6 @@
   select aname, apwd from ausertable
   WHERE  aname = #{aname} AND apwd= #{apwd}
 </select>
-
     <!--注册-->
     <insert id="register" parameterType="com.java.pojo.Auser">
   insert into ausertable (aname,apwd,name)
