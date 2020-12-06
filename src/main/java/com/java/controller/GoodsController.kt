@@ -57,4 +57,11 @@ class GoodsController {
         print(goodsMessage)
         return JSON.toJSONString(goodsMessage)
     }
+
+    @RequestMapping("/search")
+    fun goodDelete(id: Integer?) :String{
+        val goodsMessage=goodsService!!.findById(id)
+        print(goodsMessage)
+        return JSON.toJSONString(goodsMessage)
+    }
 }

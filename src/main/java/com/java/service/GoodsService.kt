@@ -15,4 +15,5 @@ interface GoodsService {
     fun findGoodsByPage(goodVo: GoodVo?): List<Goodstable?>?
     fun findGoodsByName(name: String?):List<Goodstable?>?
     fun insertGoods(goods: Goodstable?):Int
+    fun findById(id: Integer?): Goodstable
 }

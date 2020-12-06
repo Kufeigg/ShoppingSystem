@@ -143,7 +143,7 @@
                     maxmin:true,
                     shadeClose: true,
                     area: ['100%', '100%'],
-                    content: '../page/table/edit.html',
+                    content: '${pageContext.request.contextPath}/admin/togoodsinsert',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);

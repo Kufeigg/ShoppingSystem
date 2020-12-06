@@ -55,7 +55,7 @@ class BaseController {
 
     @RequestMapping("/togoodsinsert")
     fun togoodsinsert(): String {
-        return "/admin/goods/goodsinsert"
+        return "/admin/goods/goodsEditor"
     }
 
 }
