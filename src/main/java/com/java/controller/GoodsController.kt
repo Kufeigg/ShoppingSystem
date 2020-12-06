@@ -32,7 +32,6 @@ class GoodsController {
      * @param goodVo
      * @return
      */
-
     @RequestMapping("/list")
     fun list(goodVo: GoodVo): DataGridViewResult {
         /*

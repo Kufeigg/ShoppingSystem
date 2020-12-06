@@ -2,7 +2,9 @@ package com.java.controller
 
 import com.java.util.SystemConstant
 import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
+import javax.print.attribute.IntegerSyntax
 import javax.servlet.http.HttpSession
 
 /**
@@ -53,9 +55,15 @@ class BaseController {
         return "/admin/goods/goodstable"
     }
 
-    @RequestMapping("/togoodsinsert")
-    fun togoodsinsert(): String {
-        return "/admin/goods/goodsEditor"
+    @RequestMapping("/togoodsinsert/{goodsId}")
+    fun togoodsinsert(@PathVariable("goodsId") goodsId:Integer): String {
+        if (goodsId == null) {
+            return "/admin/goods/goodsEditor";
+        } else {
+            return "/admin/goods/goodsEditor?goodsId="+ goodsId;
+        }
+
+
     }
 
 }
