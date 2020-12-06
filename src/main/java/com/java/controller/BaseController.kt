@@ -55,15 +55,9 @@ class BaseController {
         return "/admin/goods/goodstable"
     }
 
-    @RequestMapping("/togoodsinsert/{goodsId}")
-    fun togoodsinsert(@PathVariable("goodsId") goodsId:Integer): String {
-        if (goodsId == null) {
-            return "/admin/goods/goodsEditor";
-        } else {
-            return "/admin/goods/goodsEditor?goodsId="+ goodsId;
-        }
-
-
+    @RequestMapping("/togoodsinsert")
+    fun togoodsinsert(): String {
+        return "/admin/goods/goodsEditor";
     }
 
 }

@@ -3,9 +3,31 @@
         "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.java.dao.GoodsTypeDao">
+    <insert id="save">
+        insert into goodstype (typename)
+        values (#{goodsType})
+    </insert>
+
+    <update id="update">
+        update goodstype
+        <set>
+            <if test="id != typename and typename != ''">id = #{typename}</if>
+        </set>
+        where goodstype.id = #{id}
+    </update>
 
     <select id="list" resultType="com.java.pojo.GoodsType">
+        select
+           id,
+           typename
+        from goodstype
+    </select>
 
-
+    <select id="getById" resultType="com.java.pojo.GoodsType">
+        select
+           id,
+           typename
+        from goodstype
+        where id = #{id}
     </select>
 </mapper>

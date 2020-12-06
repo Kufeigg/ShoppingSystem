@@ -68,36 +68,37 @@
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/statics/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="${pageContext.request.contextPath}/statics/layui/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
 
-    //下拉菜单
-    tableSelect.render({
-        elem: '#goodstypeid',
-        checkedKey: 'id',
-        table: {
-            url: '../api/tableSelect.json',
-            cols: [[
-                { type: 'radio' },
-                { field: 'id', title: 'ID' },
-                { field: 'username', title: '姓名' },
-                { field: 'sex', title: '性别' }
-            ]]
-        },
-        done: function (elem, data) {
-            var NEWJSON = []
-            layui.each(data.data, function (index, item) {
-                NEWJSON.push(item.username)
-            })
-            elem.val(NEWJSON.join(","))
-        }
-    })
-
-
-
-    layui.use(['form'], function () {
+    layui.use(['table', 'form', 'tableSelect'], function () {
         var form = layui.form,
             layer = layui.layer,
-            $ = layui.$;
+            table = layui.table,
+            $ = layui.jquery,
+            tableSelect = layui.tableSelect;
+
+        //下拉菜单
+        tableSelect.render({
+            elem: '#goodstypeid',
+            checkedKey: 'id',
+            table: {
+                url: '${pageContext.request.contextPath}/admin/goodstype/list',
+                cols: [[
+                    { type: 'radio' },
+                    { field: 'id', title: 'ID' },
+                    { field: 'typename', title: '商品类型' }
+                ]]
+            },
+            done: function (elem, data) {
+                var NEWJSON = []
+                console.log(data);
+                layui.each(data.data, function (index, item) {
+                    NEWJSON.push(item.username)
+                })
+                elem.val(NEWJSON.join(","))
+            }
+        })
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {

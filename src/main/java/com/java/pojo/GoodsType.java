@@ -2,6 +2,8 @@ package com.java.pojo;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @author VernZTL
  * @ClassName GoodsType.java
@@ -12,6 +14,7 @@ import lombok.Data;
 @Data
 public class GoodsType {
 
+    @NotNull(message = "id不能为空")
     private Integer id;
 
     private String typename;

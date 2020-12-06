@@ -24,8 +24,8 @@ public interface GoodsTypeService {
 
     DataGridViewResult save(GoodsType goodsType);
 
-    DataGridViewResult update(GoodsTypeUpdateVo goodsTypeUpdateVo);
+    DataGridViewResult update(GoodsType goodsType);
 
-    DataGridViewResult delete(IdVo idVo);
+    DataGridViewResult delete(Integer[] idVos);
 
 }

@@ -69,20 +69,20 @@ public class GoodsTypeController {
      * 修改
      */
     @RequestMapping("/update")
-    public DataGridViewResult update(@RequestBody GoodsTypeUpdateVo goodsTypeUpdateVo) {
+    public DataGridViewResult update(@RequestBody GoodsType goodsType) {
 
 
-        return goodsTypeService.update(goodsTypeUpdateVo);
+        return goodsTypeService.update(goodsType);
     }
 
     /**
      * 删除
      */
     @RequestMapping("/delete")
-    public DataGridViewResult delete(@RequestBody IdVo idVo) {
+    public DataGridViewResult delete(@RequestBody Integer[] idVos) {
 
 
-        return goodsTypeService.delete(idVo);
+        return goodsTypeService.delete(idVos);
     }
 
 }
