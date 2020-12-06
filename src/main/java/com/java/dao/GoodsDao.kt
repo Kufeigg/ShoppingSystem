@@ -3,7 +3,6 @@ package com.java.dao
 import com.java.pojo.Goodstable
 import com.java.vo.GoodVo
 import org.apache.ibatis.annotations.Param
-//import sun.jvm.hotspot.gc_interface.GCName
 
 
 interface GoodsDao {
