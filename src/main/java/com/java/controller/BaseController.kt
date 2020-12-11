@@ -57,7 +57,11 @@ class BaseController {
 
     @RequestMapping("/togoodsinsert")
     fun togoodsinsert(): String {
-        return "/admin/goods/goodsEditor";
+            return "/admin/goods/goodsEditor";
     }
 
+    @RequestMapping("/touserpage")
+    fun touserpage(): String {
+        return "/admin/user/usertable"
+    }
 }
