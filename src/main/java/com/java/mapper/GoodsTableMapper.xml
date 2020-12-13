@@ -30,7 +30,21 @@
         </if>
     </delete>
 
-
-
+    <update id="goodUpdate">
+        update goodstable
+        <set>
+            gname = #{gName},
+            goprice = #{gOprice},
+            grprice = #{gRprice},
+            gstore =  #{gStore},
+            gpicture =  #{gPic},
+            goodstype_id = #{goodstypeid}
+        </set>
+        where
+        0=0
+        <if test="id !=null and id !=''">
+            and `id` = ${id}
+        </if>
+    </update>
 
 </mapper>

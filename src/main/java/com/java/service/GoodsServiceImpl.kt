@@ -42,5 +42,9 @@ open class GoodsServiceImpl : GoodsService {
         return goodsDao!!.deleteById(id);
     }
 
+    override fun goodUpdate(goods: Goodstable?): Int {
+        return goodsDao!!.goodUpdate(goods);
+    }
+
 
 }

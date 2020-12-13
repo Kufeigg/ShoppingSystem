@@ -17,4 +17,5 @@ interface GoodsService {
     fun insertGoods(goods: Goodstable?):Int
     fun findById(id: Int?=null): Goodstable
     fun deleteById(id: Int?=null): Int
+    fun goodUpdate(goods: Goodstable?): Int
 }
