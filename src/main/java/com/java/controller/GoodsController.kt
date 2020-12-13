@@ -58,6 +58,19 @@ class GoodsController {
         return JSON.toJSONString(goodsMessage)
     }
 
+    /**
+     * 查询单个商品
+     *
+     * @param goodVo
+     * @return
+     */
+    @RequestMapping("/findById")
+    fun list(id: Int?): DataGridViewResult {
+
+        val goodsByPage = goodsService!!.findById(id)
+        return DataGridViewResult(goodsByPage)
+    }
+
     @RequestMapping("/delete")
     fun goodDelete(id: Int?=null) : String{
         val map: MutableMap<String, Boolean> = HashMap()
