@@ -34,8 +34,12 @@ open class GoodsServiceImpl : GoodsService {
         return goodsDao!!.insertGoods(goods)
     }
 
-    override fun findById(id: Integer?): Goodstable {
+    override fun findById(id: Int?): Goodstable {
         return goodsDao!!.findById(id);
+    }
+
+    override fun deleteById(id: Int?): Int {
+        return goodsDao!!.deleteById(id);
     }
 
 

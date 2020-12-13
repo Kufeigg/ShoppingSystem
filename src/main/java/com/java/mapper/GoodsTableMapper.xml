@@ -21,6 +21,15 @@
         </where>
     </select>
 
+    <select id="deleteById">
+        delete from goodstable
+        <where>
+            <if test="id !=null and id !=''">
+                and id = #(id)
+            </if>
+        </where>
+    </select>
+
 
 
 

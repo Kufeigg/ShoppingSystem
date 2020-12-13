@@ -78,6 +78,8 @@
             $ = layui.jquery,
             tableSelect = layui.tableSelect;
 
+
+
         //下拉菜单
         tableSelect.render({
             elem: '#goodstypeid',

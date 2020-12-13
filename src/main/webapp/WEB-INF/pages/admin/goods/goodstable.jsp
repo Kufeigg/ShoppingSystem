@@ -150,7 +150,9 @@
                 });
                 return false;
             } else if (obj.event === 'delete') {
+
                 layer.confirm('真的删除行么', function (index) {
+                    // console.log("---------delete-------------");
                     obj.del();
                     layer.close(index);
                 });

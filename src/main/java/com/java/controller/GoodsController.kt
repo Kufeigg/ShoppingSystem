@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
 import javax.annotation.Resource
+import javax.print.attribute.IntegerSyntax
 
 /**
  * @Description
@@ -58,9 +59,12 @@ class GoodsController {
     }
 
     @RequestMapping("/delete")
-    fun goodDelete(id: Integer?) :String{
-        val goodsMessage=goodsService!!.findById(id)
-        print(goodsMessage)
-        return JSON.toJSONString(goodsMessage)
+    fun goodDelete(id: Int?=null) : String{
+        val map: MutableMap<String, Boolean> = HashMap()
+        map[SystemConstant.SUCCESS] = goodsService!!.deleteById(id)>0
+
+        return JSON.toJSONString(map);
+
+
     }
 }
