@@ -9,6 +9,6 @@ interface GoodsDao {
     fun findGoodsByPage(goodVo: GoodVo?): List<Goodstable?>?
     fun findGoodsByName(@Param("gName") gcName: String?):List<Goodstable?>?
     fun insertGoods(goods: Goodstable?):Int
-    fun findById(id: Int?=null): Goodstable
-    fun deleteById(id: Int?=null): Int
+    fun findById(@Param("id")id: Int?): Goodstable
+    fun deleteById(@Param("id")id: Int?): Int
 }

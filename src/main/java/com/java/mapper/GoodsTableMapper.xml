@@ -16,18 +16,18 @@
         select * from goodstable
         <where>
             <if test="id !=null and id !=''">
-                and id = #(id)
+                and id = #{id}
             </if>
         </where>
     </select>
 
     <select id="deleteById">
         delete from goodstable
-        <where>
-            <if test="id !=null and id !=''">
-                and id = #(id)
-            </if>
-        </where>
+        where
+        0=0
+        <if test="id !=null and id !=''">
+            and id = ${id}
+        </if>
     </select>
 
 
