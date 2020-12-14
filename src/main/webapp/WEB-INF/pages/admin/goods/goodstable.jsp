@@ -138,7 +138,7 @@
             if (obj.event === 'edit') {
 
                 var index = layer.open({
-                    title: '编辑用户',
+                    title: '编辑商品',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,

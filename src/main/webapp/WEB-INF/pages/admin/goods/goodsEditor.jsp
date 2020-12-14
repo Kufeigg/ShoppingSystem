@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">商品现价（单位：元，只保留两位小数）</label>
+        <label class="layui-form-label required">商品图片</label>
         <div class="layui-input-block">
             <div id="zyupload" class="zyupload"></div>
             <input type="hidden" name="gPic" value="" class="layui-input">
