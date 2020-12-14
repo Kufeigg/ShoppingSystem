@@ -56,8 +56,12 @@ class BaseController {
     }
 
     @RequestMapping("/togoodsinsert")
-    fun togoodsinsert(): String {
+    fun togoodsinsert(id:Int?): String {
+//        if (id == null) {
             return "/admin/goods/goodsEditor";
+//        } else {
+//            return "admin/goods/goodsEditor?id="+id;
+//        }
     }
 
     @RequestMapping("/touserpage")

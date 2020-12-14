@@ -42,7 +42,7 @@ class GoodsController {
         val goodsByPage = goodsService!!.findGoodsByPage(goodVo)
         val pageInfo = PageInfo(goodsByPage)
         return DataGridViewResult(pageInfo.total, pageInfo.list)
-    }
+}
 
     @RequestMapping("/insert")
     fun goodsInsert(goods:Goodstable): String {
@@ -56,6 +56,14 @@ class GoodsController {
         val goodsMessage=goodsService!!.findGoodsByName(gName)
         print(goodsMessage)
         return JSON.toJSONString(goodsMessage)
+    }
+
+    @RequestMapping("/update")
+    fun goodUpdate(goods:Goodstable) : String{
+        val map: MutableMap<String, Boolean> = HashMap()
+        map[SystemConstant.SUCCESS] = goodsService!!.goodUpdate(goods)>0
+
+        return JSON.toJSONString(map);
     }
 
     /**
@@ -77,7 +85,5 @@ class GoodsController {
         map[SystemConstant.SUCCESS] = goodsService!!.deleteById(id)>0
 
         return JSON.toJSONString(map);
-
-
     }
 }

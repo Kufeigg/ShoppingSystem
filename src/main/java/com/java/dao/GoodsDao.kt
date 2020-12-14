@@ -11,4 +11,5 @@ interface GoodsDao {
     fun insertGoods(goods: Goodstable?):Int
     fun findById(@Param("id")id: Int?): Goodstable
     fun deleteById(@Param("id")id: Int?): Int
+    fun goodUpdate(goods: Goodstable?): Int
 }
