@@ -69,8 +69,13 @@ class BaseController {
         return "/admin/user/usertable"
     }
 
-    @RequestMapping("/tonotice")
+    @RequestMapping("/tonoticetable")
     fun tonotice(): String{
         return "/admin/notice/noticetable"
+    }
+
+    @RequestMapping("/toinsertnotice")
+    fun toinsertnotice(): String{
+        return "/admin/notice/noticeEditor"
     }
 }

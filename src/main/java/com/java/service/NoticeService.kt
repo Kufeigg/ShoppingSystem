@@ -14,5 +14,7 @@ import org.springframework.stereotype.Service
  */
 interface NoticeService {
     fun findNoticeByPage(noticeVo: NoticeVo): List<Notice?>?
+    fun findById(@Param("id")id: Int?): Notice
     fun deleteById(@Param("id")id: Int?): Int
+    fun noticeUpdate(notice: Notice): Int
 }

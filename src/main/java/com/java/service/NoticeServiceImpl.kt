@@ -16,7 +16,15 @@ open  class NoticeServiceImpl : NoticeService {
         return noticedao!!.findNoticeByPage(noticeVo)
     }
 
+    override fun findById(id: Int?): Notice {
+        return noticedao!!.findById(id)
+    }
+
     override fun deleteById(id: Int?): Int {
         return noticedao!!.deleteById(id)
+    }
+
+    override fun noticeUpdate(notice: Notice): Int {
+        return noticedao!!.noticeUpdate(notice)
     }
 }

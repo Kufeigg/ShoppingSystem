@@ -18,6 +18,27 @@
     </delete>
 
 
+    <select id="findById" resultType="com.java.pojo.Notice">
+        select * from noticetable
+        <where>
+            <if test="id !=null and id !=''">
+                and id = #{id}
+            </if>
+        </where>
+    </select>
 
+    <update id="noticeUpdate">
+        update noticetable
+        <set>
+            ntitle = #{ntitle},
+            ncontent = #{ncontent},
+            ntime=#{ntime},
+        </set>
+        where
+        0=0
+        <if test="id !=null and id !=''">
+            and `id` = ${id}
+        </if>
+    </update>
 
 </mapper>

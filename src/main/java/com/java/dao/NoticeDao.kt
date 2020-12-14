@@ -15,5 +15,8 @@ import org.apache.ibatis.annotations.Param
  */
 interface NoticeDao {
     fun findNoticeByPage(noticeVo: NoticeVo): List<Notice?>?
+    fun findById(@Param("id")id: Int?): Notice
     fun deleteById(@Param("id")id: Int?): Int
+    fun noticeUpdate(notice: Notice): Int
+
 }
