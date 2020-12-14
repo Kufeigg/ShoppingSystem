@@ -13,27 +13,6 @@
 <body>
 <div class="layuimini-container">
     <div class="layuimini-main">
-
-        <fieldset class="table-search-fieldset">
-            <legend>搜索信息</legend>
-            <div style="margin: 10px 10px 10px 10px">
-                <form class="layui-form layui-form-pane" action="">
-                    <div class="layui-form-item">
-                        <div class="layui-inline">
-                            <label class="layui-form-label">用户邮箱</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="gName" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <button type="submit" class="layui-btn layui-btn"  lay-submit lay-filter="data-search-btn"><i class="layui-icon layui-icon-search"></i> 搜 索</button>
-                            <button type="reset" class="layui-btn layui-btn-warm"><i class="layui-icon layui-icon-refresh-1"></i> 重 置</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </fieldset>
-
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
@@ -69,26 +48,6 @@
             limit: 10,
             page: true,
             skin: 'line'
-        });
-
-        // 监听搜索操作
-        form.on('submit(data-search-btn)', function (data) {
-            console.log(data.field);
-            $.post("/ShoppingSystem_war/admin/goods/search",data.field,function (result) {
-            },"json");
-            
-
-            //执行搜索重载
-            table.reload('currentTableId', {
-                page: {
-                    curr: 1
-                }
-                , where: {
-                    searchParams: result
-                }
-            }, 'data');
-
-            return false;
         });
 
         //监听表格复选框选择

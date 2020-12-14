@@ -64,4 +64,9 @@ class BaseController {
     fun touserpage(): String {
         return "/admin/user/usertable"
     }
+
+    @RequestMapping("/tonotice")
+    fun tonotice(): String{
+        return "/admin/notice/noticetable"
+    }
 }
