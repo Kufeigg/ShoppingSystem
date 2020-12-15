@@ -111,7 +111,7 @@
                     maxmin:true,
                     shadeClose: true,
                     area: ['100%', '100%'],
-                    content: '${pageContext.request.contextPath}/admin/togoodsinsert',
+                    content: '${pageContext.request.contextPath}/admin/toinsertnotice',
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
@@ -153,7 +153,7 @@
 
                     $.ajax({
                         type : "POST", //提交方式
-                        url : "${pageContext.request.contextPath}/admin/goods/delete",//路径
+                        url : "${pageContext.request.contextPath}/admin/notice/delete",//路径
                         data : {
                             "id" : dataId
                         },//数据，这里使用的是Json格式进行传输
