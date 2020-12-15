@@ -78,4 +78,9 @@ class BaseController {
     fun toinsertnotice(): String{
         return "/admin/notice/noticeEditor"
     }
+
+    @RequestMapping("/tosetting")
+    fun tosetting(): String{
+        return "/admin/setting/setting"
+    }
 }

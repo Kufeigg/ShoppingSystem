@@ -45,6 +45,7 @@
             <mvc:exclude-mapping path="/admin/login"/>
             <mvc:exclude-mapping path="/admin/goods/**"/>
             <mvc:exclude-mapping path="/admin/notice/**"/>
+            <mvc:exclude-mapping path="/admin/setting/**"/>
             <bean class="com.java.filters.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
