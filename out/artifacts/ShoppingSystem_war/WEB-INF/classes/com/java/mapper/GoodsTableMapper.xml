@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.dao.GoodsDao">
+    <select id="findGoodsByPage" resultType="com.java.pojo.Goodstable">
+        select * from goodstable
+        <where>
+            <if test="gName!=null and gName!=''">
+                and gName like concat('%',#(gName),'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findById" resultType="com.java.pojo.Goodstable">
+        select * from goodstable
+        <where>
+            <if test="id !=null and id !=''">
+                and id = #(id)
+            </if>
+        </where>
+    </select>
+
+
+
+
+</mapper>
