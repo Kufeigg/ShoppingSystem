@@ -27,4 +27,8 @@ open  class NoticeServiceImpl : NoticeService {
     override fun noticeUpdate(notice: Notice): Int {
         return noticedao!!.noticeUpdate(notice)
     }
+
+    override fun insertNotice(notice: Notice): Int {
+        return noticedao!!.insertNotice(notice)
+    }
 }

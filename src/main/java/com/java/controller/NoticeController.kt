@@ -56,10 +56,18 @@ class NoticeController {
     }
 
     @RequestMapping("/delete")
-    fun goodDelete(id: Int?=null) : String{
+    fun noticeDelete(id: Int?=null) : String{
         val map: MutableMap<String, Boolean> = HashMap()
         map[SystemConstant.SUCCESS] = noticeService!!.deleteById(id)>0
 
+        return JSON.toJSONString(map);
+    }
+
+    @RequestMapping("/insert")
+    fun noticeInsert(notice: Notice): String {
+        val map: MutableMap<String, Boolean> = HashMap()
+        notice.ntime=Date(System.currentTimeMillis());
+        map[SystemConstant.SUCCESS] = noticeService!!.insertNotice(notice) > 0
         return JSON.toJSONString(map);
     }
 

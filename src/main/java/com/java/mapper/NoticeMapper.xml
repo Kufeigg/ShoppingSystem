@@ -41,4 +41,9 @@
         </if>
     </update>
 
+    <insert id="insertNotice" parameterType="com.java.pojo.Notice">
+  insert into noticetable (ntitle,ncontent,ntime)
+  values (#{ntitle}, #{ncontent}, #{ntime})
+</insert>
+
 </mapper>

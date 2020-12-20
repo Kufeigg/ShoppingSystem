@@ -17,4 +17,5 @@ interface NoticeService {
     fun findById(@Param("id")id: Int?): Notice
     fun deleteById(@Param("id")id: Int?): Int
     fun noticeUpdate(notice: Notice): Int
+    fun insertNotice(notice: Notice):Int
 }
