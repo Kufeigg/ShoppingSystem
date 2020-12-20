@@ -25,6 +25,10 @@ public class DataGridViewResult {
         this.data=data;
     }
 
+    public DataGridViewResult() {
+        super();
+    }
+
     public Integer getCode() {
         return code;
     }
