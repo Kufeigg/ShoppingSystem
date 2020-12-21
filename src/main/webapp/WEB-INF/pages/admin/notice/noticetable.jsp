@@ -108,7 +108,7 @@
 
         table.on('tool(currentTableFilter)', function (obj) {
             var dataId = obj.data.id;
-
+            console.log(dataId)
             if (obj.event === 'edit') {
 
                 var index = layer.open({

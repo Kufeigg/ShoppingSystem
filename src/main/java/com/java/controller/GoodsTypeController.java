@@ -64,6 +64,19 @@ public class GoodsTypeController {
        return JSON.toJSONString(map);
     }
 
+    @RequestMapping("/insert")
+    public String insert( GoodsType goodsType) {
+        Map<String,Boolean> map=new HashMap<String, Boolean>();
+        if (goodsTypeService.insert(goodsType)>0){
+            map.put(SystemConstant.SUCCESS,true);
+        }else{
+            map.put(SystemConstant.SUCCESS,false);
+        }
+        return JSON.toJSONString(map);
+    }
+
+
+
 
 
 

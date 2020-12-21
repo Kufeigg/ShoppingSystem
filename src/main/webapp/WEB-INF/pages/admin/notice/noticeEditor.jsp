@@ -22,6 +22,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">公告标题</label>
         <div class="layui-input-block">
+            <input type="hidden" id="dataId" name="id" value="" class="layui-input">
             <input type="text" id="ntitle" name="ntitle" lay-verify="required" lay-reqtext="公告标题不能为空" placeholder="请输入商品原价" value="" class="layui-input">
             <tip>填写公告标题</tip>
         </div>
@@ -58,6 +59,7 @@
 
 
         var dataId = getQueryVariable("id");
+        console.log(dataId)
 
         $.ajax({
             type : "POST", //提交方式
@@ -67,7 +69,6 @@
             },//数据，这里使用的是Json格式进行传输
             success : function(result) {//返回数据根据结果进行相应的处理
                 console.log(result);
-
                 let ntitle = result.data.ntitle;
                 let ncontent = result.data.ncontent;
 
@@ -85,13 +86,20 @@
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {
+            var method="insert"
             console.log(data);
+            if (data.field.id==""){
+                delete data.field.id
+                method="insert"
+            }else {
+                method="update"
+            }
             var index = layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
             }, function () {
                 $.ajax({
                     type : "POST", //提交方式
-                    url : "${pageContext.request.contextPath}/admin/notice/update",//路径
+                    url : "${pageContext.request.contextPath}/admin/notice/"+method,//路径
                     data : data.field,//数据，这里使用的是Json格式进行传输
                     success : function(result) {//返回数据根据结果进行相应的处理
                         let res = JSON.parse(result);

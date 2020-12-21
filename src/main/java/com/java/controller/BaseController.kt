@@ -75,8 +75,8 @@ class BaseController {
     }
 
     @RequestMapping("/toinsertnotice")
-    fun toinsertnotice(): String{
-        return "/admin/notice/noticeInsert"
+    fun toinsertnotice(id:Int?): String{
+        return "/admin/notice/noticeEditor"
     }
 
     @RequestMapping("/tosetting")
@@ -90,7 +90,7 @@ class BaseController {
     }
 
     @RequestMapping("/togoodstypeEditor")
-    fun togoodstypeEditor(): String{
+    fun togoodstypeEditor(id:Int?): String{
         return "/admin/goods/goodstypeEditor"
     }
 

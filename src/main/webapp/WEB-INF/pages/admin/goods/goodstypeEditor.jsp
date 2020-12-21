@@ -22,6 +22,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">类型名称</label>
         <div class="layui-input-block">
+            <input type="hidden" id="dataId" name="id" value="" class="layui-input">
             <input type="text" id="typename" name="typename" lay-verify="required" lay-reqtext="类型名称不能为空" placeholder="请输入类型名称" value="" class="layui-input">
             <tip>填写类型名称</tip>
         </div>
@@ -50,7 +51,7 @@
 
 
         var dataId = getQueryVariable("id");
-
+        console.log(dataId)
         $.ajax({
             type : "POST", //提交方式
             url : "${pageContext.request.contextPath}/admin/goodstype/getById",//路径
@@ -73,13 +74,21 @@
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {
+            var method="insert"
             console.log(data);
+            if (data.field.id==""){
+               delete data.field.id
+               method="insert"
+            }else {
+                method="update"
+            }
+            console.log(data.field)
             var index = layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
             }, function () {
                 $.ajax({
                     type : "POST", //提交方式
-                    url : "${pageContext.request.contextPath}/admin/goodstype/update",//路径
+                    url : "${pageContext.request.contextPath}/admin/goodstype/"+method,//路径
                     data : data.field,//数据，这里使用的是Json格式进行传输
                     success : function(result) {//返回数据根据结果进行相应的处理
                         let res = JSON.parse(result);
