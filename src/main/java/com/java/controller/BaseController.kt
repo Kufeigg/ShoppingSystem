@@ -83,4 +83,16 @@ class BaseController {
     fun tosetting(): String{
         return "/admin/setting/setting"
     }
+
+    @RequestMapping("/togoodstype")
+    fun togoodstype(): String{
+        return "/admin/goods/goodstypetable"
+    }
+
+    @RequestMapping("/togoodstypeEditor")
+    fun togoodstypeEditor(): String{
+        return "/admin/goods/goodstypeEditor"
+    }
+
+
 }

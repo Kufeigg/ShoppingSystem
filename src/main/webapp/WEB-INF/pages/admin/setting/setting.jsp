@@ -27,8 +27,8 @@
                 <label class="layui-form-label required">网站名称</label>
                 <div class="layui-input-block">
                     <input type="text" name="sitename" lay-verify="required" lay-reqtext="网站域名不能为空"
-                           placeholder="请输入网站名称" value="layuimini" class="layui-input">
-                    <tip>填写自己部署网站的名称。</tip>
+                           placeholder="请输入网站名称" value="购物商城" class="layui-input">
+                    <tip>输入网站名称</tip>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -41,7 +41,7 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label required">首页标题</label>
                 <div class="layui-input-block">
-                    <textarea name="title" class="layui-textarea">layuimini 简洁易用后台管理模板</textarea>
+                    <textarea name="title" class="layui-textarea">购物商城主页</textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">

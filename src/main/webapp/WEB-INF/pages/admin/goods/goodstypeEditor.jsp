@@ -20,20 +20,12 @@
 <div class="layui-form layuimini-form">
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">公告标题</label>
+        <label class="layui-form-label required">类型名称</label>
         <div class="layui-input-block">
-            <input type="text" id="ntitle" name="ntitle" lay-verify="required" lay-reqtext="公告标题不能为空" placeholder="请输入商品原价" value="" class="layui-input">
-            <tip>填写公告标题</tip>
+            <input type="text" id="typename" name="typename" lay-verify="required" lay-reqtext="类型名称不能为空" placeholder="请输入类型名称" value="" class="layui-input">
+            <tip>填写类型名称</tip>
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">填写公告内容</label>
-        <div class="layui-input-block">
-            <input type="text" id="ncontent" name="ncontent" lay-verify="required" lay-reqtext="公告内容不能为空" placeholder="请输入商品现价" value="" class="layui-input">
-            <tip>填写公告内容</tip>
-        </div>
-    </div>
-
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
@@ -61,21 +53,17 @@
 
         $.ajax({
             type : "POST", //提交方式
-            url : "${pageContext.request.contextPath}/admin/notice/findById",//路径
+            url : "${pageContext.request.contextPath}/admin/goodstype/getById",//路径
             data : {
                 "id" : dataId
             },//数据，这里使用的是Json格式进行传输
             success : function(result) {//返回数据根据结果进行相应的处理
                 console.log(result);
-
-                let ntitle = result.data.ntitle;
-                let ncontent = result.data.ncontent;
+                let typename = result.data.typename;
 
 
                 $('#dataId').val(dataId);
-                $('#ntitle').val(ntitle);
-                $('#ncontent').val(ncontent);
-
+                $('#typename').val(typename);
 
                 form.render(); //更新全部
                 form.render('select'); //刷新select选择框渲染
@@ -91,7 +79,7 @@
             }, function () {
                 $.ajax({
                     type : "POST", //提交方式
-                    url : "${pageContext.request.contextPath}/admin/notice/update",//路径
+                    url : "${pageContext.request.contextPath}/admin/goodstype/update",//路径
                     data : data.field,//数据，这里使用的是Json格式进行传输
                     success : function(result) {//返回数据根据结果进行相应的处理
                         let res = JSON.parse(result);

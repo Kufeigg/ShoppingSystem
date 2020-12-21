@@ -1,9 +1,11 @@
 package com.java.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.java.pojo.GoodsType;
 import com.java.service.GoodsTypeService;
 import com.java.util.DataGridViewResult;
+import com.java.util.SystemConstant;
 import com.java.vo.GoodsTypePageVo;
 import com.java.vo.GoodsTypeUpdateVo;
 import com.java.vo.IdVo;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author VernZTL
@@ -37,50 +41,30 @@ public class GoodsTypeController {
         return goodsTypeService.list();
     }
 
-    /**
-     * 列表分页
-     */
-    @RequestMapping("/listPage")
-    public DataGridViewResult listPage(@RequestBody GoodsTypePageVo goodsTypePageVo) {
-
-        return goodsTypeService.listPage(goodsTypePageVo);
-    }
 
     /**
      * 查单条记录
      */
     @RequestMapping("/getById")
-    public DataGridViewResult getById(@RequestBody IdVo idVo) {
-
-        return goodsTypeService.getById(idVo);
+    public DataGridViewResult getById( Integer id) {
+        return goodsTypeService.findById(id);
     }
 
     /**
-     * 新增
-     */
-    @RequestMapping("/save")
-    public DataGridViewResult save(@RequestBody GoodsType goodsType) {
-
-
-        return goodsTypeService.save(goodsType);
-    }
-
-    /**
-     * 修改
+     * update
      */
     @RequestMapping("/update")
-    public DataGridViewResult update(@RequestBody GoodsTypeUpdateVo goodsTypeUpdateVo) {
-
-        return goodsTypeService.update(goodsTypeUpdateVo);
+    public String update( GoodsType goodsType) {
+        Map<String,Boolean> map=new HashMap<String, Boolean>();
+        if (goodsTypeService.update(goodsType)>0){
+            map.put(SystemConstant.SUCCESS,true);
+        }else{
+            map.put(SystemConstant.SUCCESS,false);
+        }
+       return JSON.toJSONString(map);
     }
 
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    public DataGridViewResult delete(@RequestBody IdVo idVo) {
 
-        return goodsTypeService.delete(idVo);
-    }
+
 
 }

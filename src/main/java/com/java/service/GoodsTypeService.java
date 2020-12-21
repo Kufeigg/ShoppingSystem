@@ -5,6 +5,7 @@ import com.java.util.DataGridViewResult;
 import com.java.vo.GoodsTypePageVo;
 import com.java.vo.GoodsTypeUpdateVo;
 import com.java.vo.IdVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,14 +19,9 @@ public interface GoodsTypeService {
 
     DataGridViewResult list();
 
-    DataGridViewResult listPage(GoodsTypePageVo goodsTypePageVo);
-
-    DataGridViewResult getById(IdVo idVo);
-
-    DataGridViewResult save(GoodsType goodsType);
-
-    DataGridViewResult update(GoodsTypeUpdateVo goodsTypeUpdateVo);
-
-    DataGridViewResult delete(IdVo idVo);
+    int insert(GoodsType goodsType);
+    int deleteById(@Param("id") int id);
+    int update(GoodsType goodsType);
+    DataGridViewResult findById(@Param("id") int id);
 
 }

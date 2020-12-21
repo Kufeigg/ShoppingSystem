@@ -34,27 +34,26 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
     }
 
     @Override
-    public DataGridViewResult listPage(GoodsTypePageVo goodsTypePageVo) {
-        return null;
+    public int insert(GoodsType goodsType) {
+        return goodsTypeDao.insert(goodsType);
     }
 
     @Override
-    public DataGridViewResult getById(IdVo idVo) {
-        return null;
+    public int deleteById(int id) {
+        return goodsTypeDao.deleteById(id);
     }
 
     @Override
-    public DataGridViewResult save(GoodsType goodsType) {
-        return null;
+    public int update(GoodsType goodsType) {
+        return goodsTypeDao.update(goodsType);
     }
 
-    @Override
-    public DataGridViewResult update(GoodsTypeUpdateVo goodsTypeUpdateVo) {
-        return null;
-    }
 
     @Override
-    public DataGridViewResult delete(IdVo idVo) {
-        return null;
+    public DataGridViewResult findById(int id) {
+
+        List<GoodsType> goodsType = goodsTypeDao.findById(id);
+        return new DataGridViewResult(goodsType);
     }
+
 }

@@ -6,4 +6,39 @@
     <select id="list" resultType="com.java.pojo.GoodsType">
         select * from goodstype
     </select>
+
+    <delete id="deleteById">
+        delete from goodstype
+        where
+        0=0
+        <if test="id !=null and id !=''">
+            and `id` = ${id}
+        </if>
+    </delete>
+
+    <update id="update">
+        update goodstype
+        <set>
+            typename = #{typename},
+        </set>
+        where
+        0=0
+        <if test="id !=null and id !=''">
+            and `id` = ${id}
+        </if>
+    </update>
+
+    <insert id="insert" parameterType="com.java.pojo.GoodsType">
+  insert into goodstype (typename)
+  values (#{typename})
+</insert>
+
+    <select id="findById" resultType="com.java.pojo.GoodsType">
+        select * from goodstype
+        <where>
+            <if test="id !=null and id !=''">
+                and id = #{id}
+            </if>
+        </where>
+    </select>
 </mapper>
