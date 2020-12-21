@@ -14,4 +14,7 @@ import org.apache.ibatis.annotations.Param
 interface UserDao{
     fun findUserList(userVo: UserVo): List<User?>?
     fun deleteUser( bemail:String): Int
+    fun login(@Param("bemail") bemail: String?,
+              @Param("bpwd") bpwd: String?):User?
+    fun regist(user: User):Int
 }

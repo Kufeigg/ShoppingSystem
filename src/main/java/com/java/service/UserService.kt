@@ -2,6 +2,7 @@ package com.java.service
 
 import com.java.pojo.User
 import com.java.vo.UserVo
+import org.apache.ibatis.annotations.Param
 
 /**
  * @Description
@@ -13,4 +14,6 @@ import com.java.vo.UserVo
 interface UserService {
     fun findUserList(userVo: UserVo): List<User?>?
     fun deleteUser(bemail:String): Int
+    fun login(@Param("bemail") bemail: String?,
+              @Param("bpwd") bpwd: String?):User?
 }

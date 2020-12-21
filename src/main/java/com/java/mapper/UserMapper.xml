@@ -10,4 +10,10 @@
     <delete id="deleteUser">
         delete from busertable where bemail=#{bemail}
     </delete>
+
+    <!--登录-->
+    <select id="login" resultType="com.java.pojo.User" parameterType="String">
+    select bemail, bpwd from busertable
+    WHERE  bemail = #{bemail} AND bpwd= #{bpwd}
+    </select>
 </mapper>

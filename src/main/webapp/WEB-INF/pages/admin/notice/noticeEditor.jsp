@@ -23,14 +23,14 @@
         <label class="layui-form-label required">公告标题</label>
         <div class="layui-input-block">
             <input type="hidden" id="dataId" name="id" value="" class="layui-input">
-            <input type="text" id="ntitle" name="ntitle" lay-verify="required" lay-reqtext="公告标题不能为空" placeholder="请输入商品原价" value="" class="layui-input">
+            <input type="text" id="ntitle" name="ntitle" lay-verify="required" lay-reqtext="公告标题不能为空" placeholder="请输入公告标题" value="" class="layui-input">
             <tip>填写公告标题</tip>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">填写公告内容</label>
         <div class="layui-input-block">
-            <input type="text" id="ncontent" name="ncontent" lay-verify="required" lay-reqtext="公告内容不能为空" placeholder="请输入商品现价" value="" class="layui-input">
+            <input type="text" id="ncontent" name="ncontent" lay-verify="required" lay-reqtext="公告内容不能为空" placeholder="请输入公告内容" value="" class="layui-input">
             <tip>填写公告内容</tip>
         </div>
     </div>

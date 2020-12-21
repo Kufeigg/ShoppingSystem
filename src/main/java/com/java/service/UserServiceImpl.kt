@@ -14,10 +14,16 @@ open class UserServiceImpl : UserService {
     private val userDao: UserDao? = null
 
     override fun findUserList(userVo: UserVo): List<User?>? {
-       return userDao!!.findUserList(userVo)
+        return userDao!!.findUserList(userVo)
     }
 
-    override fun deleteUser(bemail:String): Int {
+    override fun deleteUser(bemail: String): Int {
         return userDao!!.deleteUser(bemail)
     }
+
+    override fun login(bemail: String?, bpwd: String?): User? {
+        val user = userDao!!.login(bemail, bpwd)
+        return if (user != null)  user else null
+    }
+
 }

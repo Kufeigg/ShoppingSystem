@@ -19,7 +19,7 @@
         <a href="#">首页</a>
       </p>
       <div class="sn-quick-menu">
-        <div class="login"><a href="login.html">登录</a></div>
+        <div class="login"><a href="${pageContext.request.contextPath}/shop/login">登录</a></div>
         <div class="sp-cart"><a href="shopcart.html">购物车</a><span>2</span></div>
       </div>
     </div>
@@ -56,7 +56,7 @@
             <a href="commodity.html" class="active">所有商品</a>
             <a href="buytoday.html">今日团购</a>
             <a href="information.html">母婴资讯</a>
-            <a href="about.html">关于我们</a>
+            <a href="${pageContext.request.contextPath}/shop/about">当前公告</a>
           </div>
         </div>
       </div>
@@ -481,7 +481,7 @@ layui.config({
      var ins = carousel.render(option);
      var html = demo.innerHTML;
      var listCont = document.getElementById('list-cont');
-     // console.log(layui.router("#/about.html"))
+     // console.log(layui.router("#/about.jsp"))
       mm.request({
         url: '${pageContext.request.contextPath}/WEB-INF/pages/shop/html/json/index.json',
         success : function(res){
@@ -496,6 +496,7 @@ layui.config({
     
 
 });
+
   </script>
 </body>
 </html>

@@ -17,4 +17,12 @@ class ShopBaseController {
     fun index(): String {
         return "/shop/html/index"
     }
+    @RequestMapping("/login")
+    fun login():String{
+        return "/shop/html/login"
+    }
+    @RequestMapping("/about")
+    fun about():String{
+        return "/shop/html/about"
+    }
 }

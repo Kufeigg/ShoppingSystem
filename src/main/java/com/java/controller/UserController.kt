@@ -13,6 +13,7 @@ import org.apache.ibatis.annotations.Param
 import org.springframework.web.bind.annotation.*
 import java.util.HashMap
 import javax.annotation.Resource
+import javax.servlet.http.HttpSession
 
 /**
  * @Description
@@ -49,5 +50,7 @@ class UserController {
         map[SystemConstant.SUCCESS] = userService!!.deleteUser(data)>0
         return JSON.toJSONString(map)
     }
+
+
 
 }
