@@ -16,12 +16,40 @@
         select * from goodstable
         <where>
             <if test="id !=null and id !=''">
-                and id = #(id)
+                and id = #{id}
             </if>
         </where>
     </select>
 
+    <delete id="deleteById">
+        delete from goodstable
+        where
+        0=0
+        <if test="id !=null and id !=''">
+            and `id` = ${id}
+        </if>
+    </delete>
 
+    <update id="goodUpdate">
+        update goodstable
+        <set>
+            gname = #{gName},
+            goprice = #{gOprice},
+            grprice = #{gRprice},
+            gstore =  #{gStore},
+            gpic =  #{gPic},
+            goodstype_id = #{goodstypeid}
+        </set>
+        where
+        0=0
+        <if test="id !=null and id !=''">
+            and `id` = ${id}
+        </if>
+    </update>
 
+    <insert id="insertGoods">
+        insert into goodstable(gname, goprice, grprice, gstore, gpic, goodstype_id)
+        values (#{gName},#{gOprice},#{gRprice},#{gStore},#{gPic},#{goodstypeid})
+    </insert>
 
 </mapper>

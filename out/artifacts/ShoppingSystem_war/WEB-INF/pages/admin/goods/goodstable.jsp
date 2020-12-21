@@ -123,7 +123,34 @@
             } else if (obj.event === 'delete') {  // 监听删除操作
                 var checkStatus = table.checkStatus('currentTableId')
                     , data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
+                console.log(data)
+                var ids = [];
+                for (var i=0;i<data.length;i++) {
+                    ids.push(data[i].id)
+                }
+                console.log(ids);
+                layer.confirm('真的删除么?', function (index) {
+
+                    $.ajax({
+                        type : "POST", //提交方式
+                        url : "${pageContext.request.contextPath}/admin/goods/batchDelete",//路径
+                        data : {
+                            "ids" : ids
+                        },//数据，这里使用的是Json格式进行传输
+                        success : function(result) {//返回数据根据结果进行相应的处理
+                            console.log(JSON.parse(result));
+                            var result = JSON.parse(result)
+                            if (result.success) {
+                                layer.alert("删除成功！");
+                                obj.del();
+                            } else {
+                                layer.alert("操作异常！");
+                            }
+                        }
+                    });
+                    layer.close(index);
+                });
+
             }
         });
 
@@ -133,25 +160,48 @@
         });
 
         table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;
+            var dataId = obj.data.id;
+
             if (obj.event === 'edit') {
 
                 var index = layer.open({
-                    title: '编辑用户',
+                    title: '编辑商品',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,
                     shadeClose: true,
                     area: ['100%', '100%'],
-                    content: '${pageContext.request.contextPath}/admin/togoodsinsert',
+                    <%--content: '${pageContext.request.contextPath}/admin/togoodsinsert',--%>
+                    content: '${pageContext.request.contextPath}/admin/togoodsinsert?id='+ dataId,
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
                 });
                 return false;
             } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
+
+                layer.confirm('真的删除么?', function (index) {
+
+                    $.ajax({
+                        type : "POST", //提交方式
+                        url : "${pageContext.request.contextPath}/admin/goods/delete",//路径
+                        data : {
+                            "id" : dataId
+                        },//数据，这里使用的是Json格式进行传输
+                        success : function(result) {//返回数据根据结果进行相应的处理
+
+                            console.log(JSON.parse(result));
+                            var result = JSON.parse(result)
+
+                            if (result.success) {
+                                layer.alert("删除成功！");
+                                obj.del();
+                            } else {
+                                layer.alert("操作异常！");
+                            }
+                        }
+                    });
+
                     layer.close(index);
                 });
             }

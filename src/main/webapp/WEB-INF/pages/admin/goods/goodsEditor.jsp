@@ -58,8 +58,9 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">商品图片</label>
         <div class="layui-input-block">
+            <div id="picShow"></div>
             <div id="zyupload" class="zyupload"></div>
-            <input type="hidden" name="gPic" value="" class="layui-input">
+            <input type="hidden"  id = "gPic" name="gPic" value="" class="layui-input">
             <tip>上传商品图片</tip>
         </div>
     </div>
@@ -85,45 +86,43 @@
             $ = layui.jquery,
             tableSelect = layui.tableSelect;
 
-
-
         var dataId = getQueryVariable("id");
-
         var ngoodstypeid = 0;
-        $.ajax({
-            type : "POST", //提交方式
-            url : "${pageContext.request.contextPath}/admin/goods/findById",//路径
-            data : {
-                "id" : dataId
-            },//数据，这里使用的是Json格式进行传输
-            success : function(result) {//返回数据根据结果进行相应的处理
-                console.log(result);
-                ngoodstypeid = result.data.goodstypeid;
-                let ngname = result.data.gname;
-                let ngoprice = result.data.goprice;
-                let ngrprice = result.data.grprice;
-                let ngstore = result.data.gstore;
-                let ngpic = result.data.gpic;
-                console.log(ngoodstypeid)
-                console.log(ngname)
-                console.log(ngoprice)
-                console.log(ngrprice)
-                console.log(ngstore)
-                console.log(ngpic)
+        if (dataId) {
+            $.ajax({
+                type : "POST", //提交方式
+                url : "${pageContext.request.contextPath}/admin/goods/findById",//路径
+                data : {
+                    "id" : dataId
+                },//数据，这里使用的是Json格式进行传输
+                success : function(result) {//返回数据根据结果进行相应的处理
+                    console.log(result);
+                    ngoodstypeid = result.data.goodstypeid;
+                    let ngname = result.data.gname;
+                    let ngoprice = result.data.goprice;
+                    let ngrprice = result.data.grprice;
+                    let ngstore = result.data.gstore;
+                    let ngpic = result.data.gpic;
+                    console.log(ngoodstypeid)
+                    console.log(ngname)
+                    console.log(ngoprice)
+                    console.log(ngrprice)
+                    console.log(ngstore)
+                    console.log(ngpic)
 
-                $('#dataId').val(dataId);
-                $('#gname').val(ngname);
-                $('#goprice').val(ngoprice);
-                $('#grprice').val(ngrprice);
-                $('#gstore').val(ngstore);
-                $('#gpicture').html('<img name="gPic" src='+ngpic+' width="100"></img>');
-                $('#goodstypeName').attr("ts-selected", ngoodstypeid);
+                    $('#dataId').val(dataId);
+                    $('#gname').val(ngname);
+                    $('#goprice').val(ngoprice);
+                    $('#grprice').val(ngrprice);
+                    $('#gstore').val(ngstore);
+                    $('#picShow').html('<img name="gPic" src='+ngpic+' width="100"></img>');
+                    $('#goodstypeName').attr("ts-selected", ngoodstypeid);
 
-                form.render(); //更新全部
-                form.render('select'); //刷新select选择框渲染
-            }
-        });
-
+                    form.render(); //更新全部
+                    form.render('select'); //刷新select选择框渲染
+                }
+            });
+        }
 
         //下拉菜单
         tableSelect.render({
@@ -153,28 +152,55 @@
         //监听提交
         form.on('submit(saveBtn)', function (data) {
             console.log(data);
-            var index = layer.alert(JSON.stringify(data.field), {
+            data = data.field;
+            delete data["fileselect[0]"];
+
+            var index = layer.alert(JSON.stringify(data), {
                 title: '最终的提交信息'
             }, function () {
-                $.ajax({
-                    type : "POST", //提交方式
-                    url : "${pageContext.request.contextPath}/admin/goods/update",//路径
-                    data : data.field,//数据，这里使用的是Json格式进行传输
-                    success : function(result) {//返回数据根据结果进行相应的处理
-                        let res = JSON.parse(result);
-                        if (res.success) {
-                            layer.msg("操作成功");
-                        } else {
-                            layer.msg("操作异常");
+                if (dataId) {
+                    console.log(data);
+                    $.ajax({
+                        type : "POST", //提交方式
+                        url : "${pageContext.request.contextPath}/admin/goods/update",//路径
+                        data : data,//数据，这里使用的是Json格式进行传输
+                        success : function(result) {//返回数据根据结果进行相应的处理
+                            let res = JSON.parse(result);
+                            if (res.success) {
+                                layer.msg("操作成功");
+                            } else {
+                                layer.msg("操作异常");
+                            }
+                            // 关闭弹出层
+                            layer.close(index);
+                            var iframeIndex = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(iframeIndex);
                         }
-                        // 关闭弹出层
-                        layer.close(index);
-                        var iframeIndex = parent.layer.getFrameIndex(window.name);
-                        parent.layer.close(iframeIndex);
-                    }
-                });
+                    });
+                } else {
+                    console.log(data);
+                    delete data["id"];
 
-
+                    console.log(data);
+                    $.ajax({
+                        type : "POST", //提交方式
+                        url : "${pageContext.request.contextPath}/admin/goods/insert",//路径
+                        data : data,//数据，这里使用的是Json格式进行传输
+                        success : function(result) {//返回数据根据结果进行相应的处理
+                            console.log(result);
+                            let res = JSON.parse(result);
+                            if (res.success) {
+                                layer.msg("操作成功");
+                            } else {
+                                layer.msg("操作异常");
+                            }
+                            // 关闭弹出层
+                            layer.close(index);
+                            var iframeIndex = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(iframeIndex);
+                        }
+                    });
+                }
             });
             return false;
         });
@@ -185,10 +211,10 @@
             height: "400px",                 // 宽度
             itemWidth: "140px",                 // 文件项的宽度
             itemHeight: "115px",                 // 文件项的高度
-            url: "api/upload",  // 上传文件的路径
+            url: "${pageContext.request.contextPath}/files/upload",  // 上传文件的路径
             fileType: ["jpg", "png", "txt", "js", "exe"],// 上传文件的类型
             fileSize: 51200000,                // 上传文件的大小
-            multiple: true,                    // 是否可以多个文件上传
+            multiple: false,                    // 是否可以多个文件上传
             dragDrop: true,                    // 是否可以拖动上传文件
             tailor: true,                    // 是否可以裁剪图片
             del: true,                    // 是否可以删除文件
@@ -206,8 +232,11 @@
                 console.info("此文件上传成功：");
                 console.info(file.name);
                 console.info("此文件上传到服务器地址：");
-                console.info(response);
-                $("#uploadInf").append("上传成功，文件地址是：" + response + "");
+                response = JSON.parse(response)
+                console.info(response.data);
+                console.info(response.data.file);
+                $("#uploadInf").append("上传成功，文件地址是：" + response.data.file + "");
+                $("#gPic").val(response.data.file);
             },
             onFailure: function (file, response) {          // 文件上传失败的回调方法
                 console.info("此文件上传失败：");

@@ -37,7 +37,7 @@
             goprice = #{gOprice},
             grprice = #{gRprice},
             gstore =  #{gStore},
-            gpicture =  #{gPic},
+            gpic =  #{gPic},
             goodstype_id = #{goodstypeid}
         </set>
         where
@@ -46,5 +46,10 @@
             and `id` = ${id}
         </if>
     </update>
+
+    <insert id="insertGoods">
+        insert into goodstable(gname, goprice, grprice, gstore, gpic, goodstype_id)
+        values (#{gName},#{gOprice},#{gRprice},#{gStore},#{gPic},#{goodstypeid})
+    </insert>
 
 </mapper>

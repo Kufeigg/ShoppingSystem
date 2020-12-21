@@ -8,6 +8,7 @@ import com.java.service.GoodsService
 import com.java.util.DataGridViewResult
 import com.java.util.SystemConstant
 import com.java.vo.GoodVo
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
@@ -84,6 +85,17 @@ class GoodsController {
         val map: MutableMap<String, Boolean> = HashMap()
         map[SystemConstant.SUCCESS] = goodsService!!.deleteById(id)>0
 
+        return JSON.toJSONString(map);
+    }
+
+    @RequestMapping("/batchDelete")
+    fun batchDelete(@RequestBody ids: Array<Int>?=null) : String{
+        val map: MutableMap<String, Boolean> = HashMap()
+        if (ids != null) {
+            ids.forEach {
+                map[SystemConstant.SUCCESS] = goodsService!!.deleteById(it)>0
+            }
+        }
         return JSON.toJSONString(map);
     }
 }
