@@ -19,7 +19,7 @@
         <a href="#">首页</a>
       </p>
       <div class="sn-quick-menu">
-        <div class="login"><a href="${pageContext.request.contextPath}/shop/login">登录</a></div>
+        <div class="login"><a  href="${pageContext.request.contextPath}/shop/login">您当前登陆的账户为：${sessionScope.loginUser.bemail}</a></div>
         <div class="sp-cart"><a href="shopcart.html">购物车</a><span>2</span></div>
       </div>
     </div>
