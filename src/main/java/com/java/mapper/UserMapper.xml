@@ -16,4 +16,17 @@
     select bemail, bpwd from busertable
     WHERE  bemail = #{bemail} AND bpwd= #{bpwd}
     </select>
+
+    <insert id="regist" parameterType="com.java.pojo.User">
+  insert into busertable (bemail,bpwd)
+  values (#{bemail}, #{bpwd})
+</insert>
+    <select id="findById" resultType="com.java.pojo.User">
+        select * from busertable
+        <where>
+            <if test="bemail !=null and bemail !=''">
+                and bemail = #{bemail}
+            </if>
+        </where>
+    </select>
 </mapper>

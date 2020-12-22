@@ -66,7 +66,7 @@
       <div class="login-cont w1200">
         <div class="form-box">
           <form class="layui-form" action="">
-            <legend>邮箱登录</legend>
+            <legend>邮箱注册</legend>
             <div class="layui-form-item">
               <div class="layui-inline">
                 <div class="layui-input-inline">
@@ -81,11 +81,7 @@
             </div>
             <div class="layui-form-item login-btn">
               <div class="layui-input-block">
-                <button class="layui-btn" lay-submit="" lay-filter="login">登录</button>
-                <br>
-                <br>
-                <br>
-                <button class="layui-btn" lay-submit="" lay-filter="regist"><a href="${pageContext.request.contextPath}/shop/regist">注册</a></button>
+                <button class="layui-btn" lay-submit="" lay-filter="regist">注册</button>
               </div>
             </div>
           </form>
@@ -147,18 +143,19 @@
       });
 
       // 登录操作
-      form.on('submit(login)', function (data) {
+      form.on('submit(regist)', function (data) {
         console.log(data.field);
-        $.post("/ShoppingSystem_war/shop/login",data.field,function (result) {
+        $.post("/ShoppingSystem_war/shop/regist",data.field,function (result) {
           if(result.success){
-            location.href="/ShoppingSystem_war/shop/index";
+            layer.msg("注册成功！跳转至登陆页");
+            setTimeout("window.location=('/ShoppingSystem_war/shop/login')",3000);
+
           }else {
-            layer.msg("用户名或密码错误");
+            layer.msg("注册失败");
           }
         },"json");
         return false;
       });
-
     });
   </script>
 

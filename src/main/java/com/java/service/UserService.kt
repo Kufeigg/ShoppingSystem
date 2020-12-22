@@ -13,7 +13,10 @@ import org.apache.ibatis.annotations.Param
  */
 interface UserService {
     fun findUserList(userVo: UserVo): List<User?>?
+    fun findById(@Param("bemail")bemail: String?): User
     fun deleteUser(bemail:String): Int
     fun login(@Param("bemail") bemail: String?,
               @Param("bpwd") bpwd: String?):User?
+    fun regist(@Param("bemail") bemail: String?,
+               @Param("bpwd") bpwd: String?):Int
 }

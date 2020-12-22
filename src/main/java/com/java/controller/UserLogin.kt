@@ -35,4 +35,21 @@ class UserLogin {
         }else map[SystemConstant.SUCCESS] = false
         return JSON.toJSONString(map)
     }
+
+    @RequestMapping("/regist",method =[RequestMethod.POST] )
+    fun regist(bemail: String,bpwd:String,session: HttpSession):String{
+        val map: MutableMap<String, Boolean> = HashMap()
+       if (userService!!.findById(bemail)==null){
+           val count=userService!!.regist(bemail,bpwd)
+           if(count>0){
+               map[SystemConstant.SUCCESS] = true
+               session.setAttribute(SystemConstant.LOGINUSER, count)
+           }else map[SystemConstant.SUCCESS] = false
+           return JSON.toJSONString(map)
+       }else{
+           map[SystemConstant.SUCCESS] = false
+          return JSON.toJSONString(map)
+       }
+
+    }
 }

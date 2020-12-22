@@ -25,4 +25,8 @@ class ShopBaseController {
     fun about():String{
         return "/shop/html/about"
     }
+    @RequestMapping("/regist")
+    fun regist():String{
+        return "/shop/html/regist"
+    }
 }
