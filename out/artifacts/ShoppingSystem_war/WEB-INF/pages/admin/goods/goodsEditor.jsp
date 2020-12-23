@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">商品现价（单位：元，只保留两位小数）</label>
+        <label class="layui-form-label required">商品库存（单位：个，请输入整数）</label>
         <div class="layui-input-block">
             <input type="text" id="gstore" name="gStore" lay-verify="required" lay-reqtext="商品库存不能为空" placeholder="请输入商品库存" value="" class="layui-input">
             <tip>填写商品库存</tip>
@@ -87,6 +87,7 @@
             tableSelect = layui.tableSelect;
 
         var dataId = getQueryVariable("id");
+        console.log(dataId)
         var ngoodstypeid = 0;
         if (dataId) {
             $.ajax({

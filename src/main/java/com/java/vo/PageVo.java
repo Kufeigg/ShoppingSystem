@@ -20,6 +20,6 @@ public class PageVo {
     /**
      * 条 默认8
      */
-    private Integer limit = 8;
+    private Integer limit = 9999;
 
 }

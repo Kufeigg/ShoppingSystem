@@ -57,7 +57,7 @@
 
         table.render({
             elem: '#currentTableId',
-            url: '${pageContext.request.contextPath}/admin/goods/list',
+            url: '${pageContext.request.contextPath}/admin/order/list',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -66,11 +66,11 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
-                {field: 'id', width: 80, title: '商品编号', sort: true},
-                {field: 'busertable_id', width: 150, title: '用户邮箱'},
+                {field: 'id', width: 80, title: '订单编号', sort: true},
+                {field: 'bemail', width: 150, title: '用户邮箱'},
                 {field: 'amount', width: 150, title: '订单金额', sort: true},
                 {field: 'status', width: 150, title: '订单状态', sort: true},
-                {field: 'orderdata', width: 80, title: '订单日期', sort: true},
+                {field: 'orderdate', width: 80, title: '订单日期', sort: true},
                 {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -82,8 +82,17 @@
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
             console.log(data.field);
-            $.post("/ShoppingSystem_war/admin/order/orderSearch",data.field,function (result) {
-            },"json");
+
+            data.field.page = 1;
+            data.field.limit = 15;
+            console.log(data.field);
+            $.post("/ShoppingSystem_war/admin/order/orderSearch",
+                data.field,
+                function (result) {
+                    console.log(result);
+                },
+                "json"
+            );
 
             //执行搜索重载
             table.reload('currentTableId', {
@@ -149,8 +158,9 @@
         });
 
         table.on('tool(currentTableFilter)', function (obj) {
-            var dataId = obj.data.id;
 
+            var  dataId=obj.data.id;
+            console.log(dataId)
             if (obj.event === 'delete') {
                 if (obj.data.status=="已付款"){
                     layer.alert("已付款订单不能被删除！");
@@ -160,6 +170,7 @@
                     $.ajax({
                         type : "POST", //提交方式
                         url : "${pageContext.request.contextPath}/admin/order/orderDelete",//路径
+                        // contentType:"application/json",
                         data : {
                             "id" : dataId
                         },//数据，这里使用的是Json格式进行传输

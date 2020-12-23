@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.dao.OrderDao">
+
+    <select id="list" resultType="map">
+        select obt.*,but.bemail from  orderbasetable obt
+        left join orderdetail od on od.orderbasetable_id = obt.id
+        left join goodstable gt on gt.id = od.goodstable_id
+        left join busertable but on but.id = obt.busertable_id
+    </select>
+
+    <select id="orderSearch" resultType="map">
+        select obt.*,but.bemail from  orderbasetable obt
+        left join orderdetail od on od.orderbasetable_id = obt.id
+        left join goodstable gt on gt.id = od.goodstable_id
+        left join busertable but on but.id = obt.busertable_id
+        where
+        0=0
+        <if test="goodsName != null and goodsName != ''">
+            and gt.gname  like concat('%',#{goodsName}, '%')
+        </if>
+    </select>
+
+    <delete id="deleteOrderById">
+        delete from orderbasetable obt
+        where
+        0=0
+        <if test="id !=null and id !=''">
+            and obt =#{id}
+        </if>
+    </delete>
+
+    <delete id="deleteDetailById">
+        delete from orderbasetable
+        where
+        0=0
+        <if test="id !=null and id !=''">
+            and id = #{id}
+        </if>
+    </delete>
+
+    <select id="findOrdertableById" resultType="com.java.pojo.OrderBaseTable">
+        select * from orderbasetable
+        where id = #{id}
+    </select>
+
+    <select id="findDetailByTableId" resultType="com.java.pojo.OrderDetail">
+        select * from orderdetail
+        where orderbasetable_id = #{id}
+
+    </select>
+
+<!--    <update id="orderUpdate">-->
+<!--        update noticetable-->
+<!--        <set>-->
+<!--            ntitle = #{ntitle},-->
+<!--            ncontent = #{ncontent},-->
+<!--            ntime=#{ntime},-->
+<!--        </set>-->
+<!--        where-->
+<!--        0=0-->
+<!--        <if test="id !=null and id !=''">-->
+<!--            and `id` = ${id}-->
+<!--        </if>-->
+<!--    </update>-->
+
+    <insert id="insertOrderList" parameterType="com.java.pojo.Notice" useGeneratedKeys="true" keyProperty="id">
+      insert into ordertable (ntitle,ncontent,ntime)
+      values (#{ntitle}, #{ncontent}, #{ntime})
+    </insert>
+
+    <insert id="insertOrderDetail" parameterType="com.java.pojo.Notice" useGeneratedKeys="true" keyProperty="id">
+      insert into orderdetail (ntitle,ncontent,ntime)
+      values (#{ntitle}, #{ncontent}, #{ntime})
+    </insert>
+
+</mapper>

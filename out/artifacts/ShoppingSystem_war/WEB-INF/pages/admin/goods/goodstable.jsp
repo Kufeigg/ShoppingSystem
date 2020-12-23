@@ -73,7 +73,7 @@
                 {field: 'goprice', width: 150, title: '商品原价', sort: true},
                 {field: 'grprice', width: 150, title: '商品现价', sort: true},
                 {field: 'gstore', width: 80, title: '库存', sort: true},
-                {field: 'gpic', width: 80, title: '图片'},
+                {field: 'gpic', width: 80, title: '图片',templet:'<div><img  src="{{ d.gpic }}"></div>'},
                 {field: 'goodstypeid', width: 135, title: 'typeID'},
                 {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
@@ -128,14 +128,15 @@
                 for (var i=0;i<data.length;i++) {
                     ids.push(data[i].id)
                 }
-                console.log(ids);
+                var str = ids.join(',');
+                console.log(str);
                 layer.confirm('真的删除么?', function (index) {
 
                     $.ajax({
                         type : "POST", //提交方式
                         url : "${pageContext.request.contextPath}/admin/goods/batchDelete",//路径
                         data : {
-                            "ids" : ids
+                            "str" : str
                         },//数据，这里使用的是Json格式进行传输
                         success : function(result) {//返回数据根据结果进行相应的处理
                             console.log(JSON.parse(result));
