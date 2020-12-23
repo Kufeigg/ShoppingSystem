@@ -43,7 +43,6 @@
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
 
@@ -103,13 +102,19 @@
          * toolbar监听事件
          */
         table.on('toolbar(currentTableFilter)', function (obj) {
+
             if (obj.event === 'delete') {  // 监听删除操作
+
                 var checkStatus = table.checkStatus('currentTableId')
                     , data = checkStatus.data;
                 console.log(data)
                 var ids = [];
                 for (var i=0;i<data.length;i++) {
-                    ids.push(data[i].id)
+                    if(data[i].id=="已付款"){
+                        layer.alert("选中的内容中包含已付款订单，已付款订单已被过滤！");
+                    }else{
+                        ids.push(data[i].id);
+                    }
                 }
                 var str = ids.join(',');
                 console.log(str);
@@ -147,7 +152,9 @@
             var dataId = obj.data.id;
 
             if (obj.event === 'delete') {
-
+                if (obj.data.status=="已付款"){
+                    layer.alert("已付款订单不能被删除！");
+                }else{
                 layer.confirm('真的删除么?', function (index) {
 
                     $.ajax({
@@ -172,6 +179,7 @@
 
                     layer.close(index);
                 });
+                }
             }
         });
 
