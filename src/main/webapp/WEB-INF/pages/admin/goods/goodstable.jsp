@@ -73,7 +73,7 @@
                 {field: 'goprice', width: 150, title: '商品原价', sort: true},
                 {field: 'grprice', width: 150, title: '商品现价', sort: true},
                 {field: 'gstore', width: 80, title: '库存', sort: true},
-                {field: 'gpic', width: 80, title: '图片'},
+                {field: 'gpic', width: 80, title: '图片',templet:'<div><img  src="{{ d.gpic }}"></div>'},
                 {field: 'goodstypeid', width: 135, title: 'typeID'},
                 {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
