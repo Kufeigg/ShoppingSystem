@@ -94,5 +94,10 @@ class BaseController {
         return "/admin/goods/goodstypeEditor"
     }
 
+    @RequestMapping("/toordertable")
+    fun toordertable(id:Int?): String{
+        return "/admin/order/ordertable"
+    }
+
 
 }
